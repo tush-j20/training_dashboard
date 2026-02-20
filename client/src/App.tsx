@@ -1,70 +1,74 @@
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Layout from './components/Layout';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Trainings from './pages/Trainings';
+import TrainingDetail from './pages/TrainingDetail';
+import TrainingForm from './pages/TrainingForm';
+import Products from './pages/Products';
+import Users from './pages/Users';
 
-interface HealthStatus {
-  status: string;
-  timestamp: string;
-  message: string;
-  environment: string;
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <>{children}</>;
 }
 
-function App() {
-  const [health, setHealth] = useState<HealthStatus | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+function AppRoutes() {
+  const { user, isLoading } = useAuth();
 
-  useEffect(() => {
-    fetch('/api/health')
-      .then((res) => res.json())
-      .then((data) => {
-        setHealth(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError('Failed to connect to API: ' + err.message);
-        setLoading(false);
-      });
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      height: '100vh',
-      fontFamily: 'system-ui, sans-serif'
-    }}>
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-          Training Dashboard
-        </h1>
-        
-        {loading && <p>Connecting to API...</p>}
-        
-        {error && (
-          <p style={{ color: 'red' }}>❌ {error}</p>
-        )}
-        
-        {health && (
-          <div style={{ 
-            background: '#e8f5e9', 
-            padding: '1rem', 
-            borderRadius: '8px',
-            marginTop: '1rem'
-          }}>
-            <p style={{ color: '#2e7d32', fontWeight: 'bold' }}>
-              ✅ API Connected
-            </p>
-            <p style={{ color: '#666', fontSize: '0.9rem' }}>
-              Status: {health.status}
-            </p>
-            <p style={{ color: '#666', fontSize: '0.9rem' }}>
-              Environment: {health.environment}
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+    <Routes>
+      <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
+      
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/trainings" element={<Trainings />} />
+        <Route path="/trainings/new" element={<TrainingForm />} />
+        <Route path="/trainings/:id" element={<TrainingDetail />} />
+        <Route path="/trainings/:id/edit" element={<TrainingForm />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/users" element={<Users />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
