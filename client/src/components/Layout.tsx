@@ -34,6 +34,9 @@ export default function Layout() {
                 <NavLink to="/trainings" className={navLinkClass}>
                   Trainings
                 </NavLink>
+                <NavLink to="/reports" className={navLinkClass}>
+                  Reports
+                </NavLink>
                 {user?.role !== 'trainer' && (
                   <>
                     <NavLink to="/products" className={navLinkClass}>
@@ -70,6 +73,9 @@ export default function Layout() {
         </NavLink>
         <NavLink to="/trainings" className={navLinkClass}>
           Trainings
+        </NavLink>
+        <NavLink to="/reports" className={navLinkClass}>
+          Reports
         </NavLink>
         {user?.role !== 'trainer' && (
           <>

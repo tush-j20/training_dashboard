@@ -10,6 +10,7 @@ import Products from './pages/Products';
 import Users from './pages/Users';
 import FeedbackForm from './pages/FeedbackForm';
 import FeedbackView from './pages/FeedbackView';
+import Reports from './pages/Reports';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -62,6 +63,7 @@ function AppRoutes() {
         <Route path="/trainings/:trainingId/feedback" element={<FeedbackView />} />
         <Route path="/products" element={<Products />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/reports" element={<Reports />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
