@@ -488,7 +488,7 @@ export default defineConfig({
 ```
 
 **Verify:** File updated at `client/vite.config.ts`
-- [ ] Verified: Vite proxy configured
+- [x] Verified: Vite proxy configured
 
 ---
 
@@ -569,7 +569,7 @@ export default App;
 ```
 
 **Verify:** File updated at `client/src/App.tsx`
-- [ ] Verified: App.tsx updated with API call
+- [x] Verified: App.tsx updated with API call
 
 ---
 
@@ -606,7 +606,7 @@ Expected output:
 - Shows "Environment: development"
 
 If you see red error message, check that backend is running on port 3001.
-- [ ] Verified: Frontend successfully connects to backend API
+- [x] Verified: Frontend successfully connects to backend API
 
 ---
 
@@ -638,7 +638,7 @@ dist/assets/index-xxx.js x.xx kB
 ```
 
 Confirm `client/dist/` folder is created with built files.
-- [ ] Verified: Frontend builds for production
+- [x] Verified: Frontend builds for production
 
 ---
 
@@ -686,7 +686,7 @@ app.listen(PORT, () => {
 ```
 
 **Verify:** File updated at `server/src/server.js`
-- [ ] Verified: Server configured to serve frontend
+- [x] Verified: Server configured to serve frontend
 
 ---
 
@@ -717,7 +717,7 @@ NODE_ENV=production npm start
 This confirms the single server can serve both API and frontend.
 
 Stop the server with `Ctrl+C` after verifying.
-- [ ] Verified: Production build works locally
+- [x] Verified: Production build works locally
 
 ---
 
@@ -813,7 +813,7 @@ pm2 startup  # Follow instructions to auto-start on reboot
 ```
 
 **Verify:** File exists at `docs/DEPLOYMENT.md`
-- [ ] Verified: Deployment documentation created
+- [x] Verified: Deployment documentation created
 
 ---
 
