@@ -80,6 +80,19 @@ CREATE TABLE IF NOT EXISTS feedback_responses (
   FOREIGN KEY (form_id) REFERENCES feedback_forms(id) ON DELETE CASCADE
 );
 
+-- Notifications
+CREATE TABLE IF NOT EXISTS notifications (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('training_reminder', 'feedback_received', 'training_assigned', 'training_updated', 'system')),
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  link TEXT,
+  is_read INTEGER DEFAULT 0,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Create indexes for common queries
 CREATE INDEX IF NOT EXISTS idx_trainings_trainer ON trainings(trainer_id);
 CREATE INDEX IF NOT EXISTS idx_trainings_status ON trainings(status);

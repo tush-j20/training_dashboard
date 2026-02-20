@@ -10,6 +10,7 @@ const usersRoutes = require('./routes/users');
 const dashboardRoutes = require('./routes/dashboard');
 const feedbackRoutes = require('./routes/feedback');
 const reportsRoutes = require('./routes/reports');
+const notificationsRoutes = require('./routes/notifications');
 
 // Import middleware
 const { authenticate } = require('./middleware/auth');
@@ -51,6 +52,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/reports', reportsRoutes);
+app.use('/api/notifications', notificationsRoutes);
 
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {

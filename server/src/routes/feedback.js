@@ -2,6 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 const db = require('../db/database');
 const { authenticate, authorize } = require('../middleware/auth');
+const { createNotification } = require('./notifications');
 
 const router = express.Router();
 
@@ -143,6 +144,21 @@ router.post('/submit/:token', (req, res) => {
       trainer_effectiveness, relevance, pace, key_takeaways,
       suggestions, would_recommend ? 1 : 0, additional_comments
     );
+
+    // Get training details and notify trainer
+    const training = db.prepare(`
+      SELECT t.title, t.trainer_id FROM trainings t WHERE t.id = ?
+    `).get(form.training_id);
+    
+    if (training) {
+      createNotification(
+        training.trainer_id,
+        'feedback_received',
+        'New Feedback Received',
+        `New feedback submitted for "${training.title}" (Rating: ${overall_rating}/5)`,
+        `/trainings/${form.training_id}/feedback`
+      );
+    }
 
     res.status(201).json({ 
       message: 'Thank you for your feedback!',

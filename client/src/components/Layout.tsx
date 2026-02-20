@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import NotificationsDropdown from './NotificationsDropdown';
 
 export default function Layout() {
   const { user, logout } = useAuth();
@@ -51,6 +52,7 @@ export default function Layout() {
             </div>
 
             <div className="flex items-center gap-4">
+              <NotificationsDropdown />
               <div className="text-right">
                 <p className="text-sm font-medium text-gray-900">{user?.name}</p>
                 <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
