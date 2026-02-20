@@ -21,13 +21,10 @@
 
 All ports are restricted to company network CIDRs only. **No public internet access.**
 
-### Allowed CIDRs
+### Allowed CIDRs (consolidated)
 ```
-10.157.240.0/20, 10.157.240.0/23, 10.157.242.0/23, 10.157.244.0/23,
-35.170.216.249/32, 34.226.45.179/32, 34.233.22.33/32,
-159.127.85.0/24, 159.127.207.0/24, 159.127.8.0/24, 167.246.60.0/22,
-159.127.0.0/16, 199.247.32.0/24, 192.195.66.0/24, 71.120.16.0/24,
-157.23.244.0/24, 159.127.100.0/22, 159.127.142.0/23
+10.157.240.0/20, 159.127.0.0/16, 167.246.60.0/22,
+35.170.216.249/32, 34.226.45.179/32, 34.233.22.33/32
 ```
 
 ### Open Ports
@@ -283,6 +280,45 @@ aws lightsail delete-instance --instance-name training-dashboard --region ap-sou
 | Data transfer | Included (512GB) |
 | Static IP (if attached) | Free while attached |
 | **Total** | **~$5/month** |
+
+---
+
+## How to Deploy Updates
+
+### Option 1: Using Lightsail Browser Console (Recommended)
+
+1. Go to [AWS Lightsail Console](https://lightsail.aws.amazon.com/)
+2. Select the `training-dashboard` instance
+3. Click "Connect using SSH" (browser-based terminal)
+4. Run the deployment script:
+   ```bash
+   cd ~/training_dashboard
+   bash scripts/deploy.sh
+   ```
+
+### Option 2: Via SSH (requires network access)
+
+```bash
+ssh -i ls-key.pem ubuntu@43.205.199.64
+cd ~/training_dashboard
+git pull origin main
+cd client && npm install && npm run build
+cd ../server && npm install
+pm2 restart all
+```
+
+### Manual Deployment Steps
+
+```bash
+cd ~/training_dashboard
+git fetch origin
+git reset --hard origin/main
+cd client && npm install && npm run build
+cd ../server && npm install
+npm run db:init  # Only if schema changed
+npm run db:seed  # Only if adding seed data
+pm2 restart all
+```
 
 ---
 
