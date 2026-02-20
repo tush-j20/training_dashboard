@@ -4,9 +4,9 @@
 
 | Property | Value |
 |----------|-------|
-| **Server IP** | `43.205.199.64` |
-| **App URL** | `http://43.205.199.64:3001` |
-| **Health Check** | `http://43.205.199.64:3001/api/health` |
+| **Server IP** | `13.233.162.74` |
+| **App URL** | `http://13.233.162.74:3001` |
+| **Health Check** | `http://13.233.162.74:3001/api/health` |
 | **Region** | Mumbai (ap-south-1a) |
 | **Instance Name** | training-dashboard |
 | **Bundle** | nano_3_1 ($5/month, 512MB RAM) |
