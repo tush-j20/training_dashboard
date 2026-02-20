@@ -105,6 +105,9 @@ export default function TrainingDetail() {
           </div>
           
           <div className="flex gap-2">
+            <Link to={`/trainings/${id}/feedback`} className="btn btn-secondary">
+              Feedback
+            </Link>
             {canEdit && (
               <Link to={`/trainings/${id}/edit`} className="btn btn-secondary">
                 Edit

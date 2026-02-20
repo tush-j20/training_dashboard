@@ -8,6 +8,8 @@ import TrainingDetail from './pages/TrainingDetail';
 import TrainingForm from './pages/TrainingForm';
 import Products from './pages/Products';
 import Users from './pages/Users';
+import FeedbackForm from './pages/FeedbackForm';
+import FeedbackView from './pages/FeedbackView';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -42,6 +44,9 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
       
+      {/* Public feedback form - no auth required */}
+      <Route path="/feedback/:token" element={<FeedbackForm />} />
+      
       <Route
         element={
           <ProtectedRoute>
@@ -54,6 +59,7 @@ function AppRoutes() {
         <Route path="/trainings/new" element={<TrainingForm />} />
         <Route path="/trainings/:id" element={<TrainingDetail />} />
         <Route path="/trainings/:id/edit" element={<TrainingForm />} />
+        <Route path="/trainings/:trainingId/feedback" element={<FeedbackView />} />
         <Route path="/products" element={<Products />} />
         <Route path="/users" element={<Users />} />
       </Route>
