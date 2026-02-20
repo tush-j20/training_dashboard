@@ -25,3 +25,8 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# SSH Keys (sensitive!)
+*.pem
+ls-key.pem
+lightsail-key.pem
