@@ -850,7 +850,7 @@ git commit -m "Phase 0: Project setup and Hello World complete
 ```
 
 **Verify:** `git log` shows your commit.
-- [ ] Verified: First commit created
+- [x] Verified: First commit created
 
 ---
 
