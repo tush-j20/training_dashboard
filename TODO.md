@@ -30,7 +30,7 @@ docs/
 scripts/
 server/
 ```
-- [ ] Verified: Folder structure created
+- [x] Verified: Folder structure created
 
 ---
 
@@ -50,7 +50,7 @@ npm init -y
   ...
 }
 ```
-- [ ] Verified: server/package.json created
+- [x] Verified: server/package.json created
 
 ---
 
@@ -67,7 +67,7 @@ git init
 On branch main (or master)
 No commits yet
 ```
-- [ ] Verified: Git repository initialized
+- [x] Verified: Git repository initialized
 
 ---
 
@@ -105,7 +105,7 @@ npm-debug.log*
 ```
 
 **Verify:** Run `cat .gitignore` (or `type .gitignore` on Windows) and see the content above.
-- [ ] Verified: .gitignore created with correct content
+- [x] Verified: .gitignore created with correct content
 
 ---
 
@@ -145,7 +145,7 @@ See setup instructions below (to be added).
 ```
 
 **Verify:** Run `cat README.md` and confirm content is present.
-- [ ] Verified: README.md created
+- [x] Verified: README.md created
 
 ---
 
@@ -166,7 +166,7 @@ npm install express
 }
 ```
 Also verify `server/node_modules/express` folder exists.
-- [ ] Verified: Express installed
+- [x] Verified: Express installed
 
 ---
 
@@ -199,7 +199,7 @@ app.listen(PORT, () => {
 ```
 
 **Verify:** File exists at `server/src/server.js`
-- [ ] Verified: server.js created
+- [x] Verified: server.js created
 
 ---
 
@@ -214,7 +214,7 @@ app.listen(PORT, () => {
 ```
 
 **Verify:** Run `cat server/package.json` and confirm scripts section is updated.
-- [ ] Verified: Start script added
+- [x] Verified: Start script added
 
 ---
 
@@ -242,7 +242,7 @@ Open browser to `http://localhost:3001/api/health` and see:
 ```
 
 Press `Ctrl+C` to stop the server after verifying.
-- [ ] Verified: Server runs and health endpoint returns JSON
+- [x] Verified: Server runs and health endpoint returns JSON
 
 ---
 
@@ -261,7 +261,7 @@ npm install dotenv
   "express": "^4.x.x"
 }
 ```
-- [ ] Verified: dotenv installed
+- [x] Verified: dotenv installed
 
 ---
 
@@ -281,7 +281,7 @@ DB_PATH=../db/training.db
 ```
 
 **Verify:** File exists at `server/.env.example`
-- [ ] Verified: .env.example created
+- [x] Verified: .env.example created
 
 ---
 
@@ -296,7 +296,7 @@ cp .env.example .env
 (On Windows: `copy .env.example .env`)
 
 **Verify:** `server/.env` file exists (won't be committed to git due to .gitignore)
-- [ ] Verified: .env file created
+- [x] Verified: .env file created
 
 ---
 
@@ -339,7 +339,7 @@ app.listen(PORT, () => {
 ```
 
 Health endpoint should now include `"environment": "development"`
-- [ ] Verified: Environment variables working
+- [x] Verified: Environment variables working
 
 ---
 
@@ -359,7 +359,7 @@ When prompted, select:
 - Variant: TypeScript
 
 **Verify:** `client/package.json` exists with vite and react dependencies.
-- [ ] Verified: React app initialized
+- [x] Verified: React app initialized
 
 ---
 
@@ -372,7 +372,7 @@ npm install
 ```
 
 **Verify:** `client/node_modules` folder exists with many packages.
-- [ ] Verified: Dependencies installed
+- [x] Verified: Dependencies installed
 
 ---
 
@@ -405,7 +405,7 @@ export default App;
 ```
 
 **Verify:** File updated at `client/src/App.tsx`
-- [ ] Verified: App.tsx simplified
+- [x] Verified: App.tsx simplified
 
 ---
 
@@ -434,7 +434,7 @@ createRoot(document.getElementById('root')!).render(
 ```
 
 **Verify:** No `App.css` or `index.css` in `client/src/`, and `main.tsx` has no CSS imports.
-- [ ] Verified: Unnecessary files removed
+- [x] Verified: Unnecessary files removed
 
 ---
 
@@ -460,7 +460,7 @@ Open browser to `http://localhost:5173` and see:
 - "Application is running successfully!" message
 
 Press `Ctrl+C` to stop after verifying.
-- [ ] Verified: Frontend runs and displays correctly
+- [x] Verified: Frontend runs and displays correctly
 
 ---
 
